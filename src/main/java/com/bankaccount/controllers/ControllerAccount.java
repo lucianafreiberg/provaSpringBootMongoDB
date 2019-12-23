@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/bank/account/")
+@RequestMapping(path = "/bank/account")
 public class ControllerAccount {
 
     private final AccountService accountService;
@@ -43,9 +43,11 @@ public class ControllerAccount {
 
     }
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Integer> remove(@PathVariable (name = "id") String id) {
-        this.accountService.remove(id);
-        return ResponseEntity.ok(1);
+   @DeleteMapping("{id}")
+    public ResponseEntity<Account> deleteAccount(@PathVariable("id") String id){
+        accountService.deleteAccount(id);
+        return ResponseEntity.ok().build();
+
     }
 }
+

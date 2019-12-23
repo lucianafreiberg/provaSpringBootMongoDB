@@ -15,6 +15,6 @@ public interface AccountService {
 
     Account update(Account account);
 
-    void remove(String id);
+    void deleteAccount(String id);
 
 }

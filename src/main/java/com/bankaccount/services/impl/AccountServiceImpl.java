@@ -47,8 +47,10 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void remove(String id) {
+    public void deleteAccount(String id) {
         this.repositoryAccount.deleteById(id);
 
     }
+
+
 }

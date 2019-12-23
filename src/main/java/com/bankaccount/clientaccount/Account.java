@@ -32,23 +32,23 @@ public class Account implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataUpdate;
 
-    public Account() {
+    private Account() {
 
     }
 
-    public Account(String id, String accountNumber, String agency, Boolean status, String cpf) {
+    public Account(String id, String accountNumber, String agency, String cpf) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.agency = agency;
-        this.status = status;
+        this.status = true;
         this.cpf = cpf;
     }
 
-    public Account(String id, String accountNumber, String agency, Boolean status, String cpf, LocalDateTime dataCreation, LocalDateTime dataUpdate) {
+    public Account(String id, String accountNumber, String agency, String cpf, LocalDateTime dataCreation, LocalDateTime dataUpdate) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.agency = agency;
-        this.status = status;
+        this.status = true;
         this.cpf = cpf;
         this.dataCreation = dataCreation;
         this.dataUpdate = dataUpdate;
@@ -109,4 +109,5 @@ public class Account implements Serializable {
     public void setDataUpdate(LocalDateTime dataUpdate) {
         this.dataUpdate = dataUpdate;
     }
+
 }
