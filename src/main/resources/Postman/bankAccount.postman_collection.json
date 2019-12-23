@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "9b678f65-605a-4afd-b0bc-378e35d903fa",
+		"name": "bankAccount",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"accountNumber\": \"35412\",\n\t\"agency\": \"0116\",\n\t\"status\": \"true\",\n\t\"cpf\": \"34568712901\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bank/account/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bank",
+						"account",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"accountNumber\": \"35412\",\n\t\"agency\": \"0116\",\n\t\"status\": \"true\",\n\t\"cpf\": \"34568712901\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bank/account/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bank",
+						"account",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
