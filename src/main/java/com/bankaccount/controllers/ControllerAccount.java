@@ -1,11 +1,15 @@
 package com.bankaccount.controllers;
 
 import com.bankaccount.clientaccount.Account;
-import com.bankaccount.services.AccountService;
+import com.bankaccount.services.impl.AccountService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/bank/account")
@@ -32,7 +36,7 @@ public class ControllerAccount {
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Account> create(@RequestBody Account account) {
+    public ResponseEntity<Account> create(@Valid @RequestBody Account account, BindingResult result) {
         return ResponseEntity.ok(this.accountService.create(account));
     }
 
@@ -42,12 +46,13 @@ public class ControllerAccount {
         return ResponseEntity.ok(this.accountService.update(account));
 
     }
+@DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id){
+       accountService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
 
-   @DeleteMapping("{id}")
-    public ResponseEntity<Account> deleteAccount(@PathVariable("id") String id){
-        accountService.deleteAccount(id);
-        return ResponseEntity.ok().build();
 
-    }
 }
+
+   }
 

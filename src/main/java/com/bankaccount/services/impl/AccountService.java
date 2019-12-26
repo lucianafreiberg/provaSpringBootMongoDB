@@ -2,7 +2,6 @@ package com.bankaccount.services.impl;
 
 import com.bankaccount.clientaccount.Account;
 import com.bankaccount.repositories.RepositoryAccount;
-import com.bankaccount.services.AccountService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -11,20 +10,19 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-public class AccountServiceImpl implements AccountService {
+public class AccountService {
 
     private final RepositoryAccount repositoryAccount;
 
-    public AccountServiceImpl(RepositoryAccount repositoryAccount) {
+    public AccountService(RepositoryAccount repositoryAccount) {
         this.repositoryAccount = repositoryAccount;
     }
 
-    @Override
+
     public Page<Account> list(Pageable page) {
         return repositoryAccount.findAll(page);
     }
 
-    @Override
     public Account listById(String id) {
         Optional<Account> account = repositoryAccount.findById(id);
         if (account.isPresent()) {
@@ -34,23 +32,28 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
-    @Override
+
     public Account create(Account account) {
         account.setDataCreation(LocalDateTime.now());
         return this.repositoryAccount.save(account);
     }
 
-    @Override
+
     public Account update(Account account) {
         account.setDataUpdate(LocalDateTime.now());
         return this.repositoryAccount.save(account);
     }
 
-    @Override
-    public void deleteAccount(String id) {
-        this.repositoryAccount.deleteById(id);
-
+    public Account findById(String id) {
+        Optional<Account> account = repositoryAccount.findById(id);
+        return account.get();
     }
 
+    public Account delete(String id) {
+        Account account = findById(id);
+        account.setStatus(false);
+        return repositoryAccount.save(account);
 
+    }
 }
+

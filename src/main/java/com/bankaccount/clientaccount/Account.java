@@ -1,9 +1,11 @@
 package com.bankaccount.clientaccount;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -14,15 +16,17 @@ public class Account implements Serializable {
 
     @MongoId
     private String id;
-
+    @NotNull
     @Size(min = 6, max = 6)
     private String accountNumber;
 
+    @NotNull
     @Size(min = 4, max = 4)
     private String agency;
 
     private Boolean status;
 
+    @CPF(message = "Invalid CPF")
     @Size(min = 11, max = 11)
     private String cpf;
 
@@ -34,14 +38,6 @@ public class Account implements Serializable {
 
     private Account() {
 
-    }
-
-    public Account(String id, String accountNumber, String agency, String cpf) {
-        this.id = id;
-        this.accountNumber = accountNumber;
-        this.agency = agency;
-        this.status = true;
-        this.cpf = cpf;
     }
 
     public Account(String id, String accountNumber, String agency, String cpf, LocalDateTime dataCreation, LocalDateTime dataUpdate) {
@@ -61,6 +57,7 @@ public class Account implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
 
     public String getAccountNumber() {
         return accountNumber;
@@ -86,7 +83,7 @@ public class Account implements Serializable {
         this.status = status;
     }
 
-    public String getCpf() {
+    private String getCpf() {
         return cpf;
     }
 
